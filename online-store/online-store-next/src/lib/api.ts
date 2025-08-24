@@ -14,5 +14,5 @@ export async function fetchProduct(id: string): Promise<Product> {
     const response = await fetch(`${BASE}/${id}`, { cache: "no-store" });
     if (!response.ok) throw new Error("Failed to fetch product");
     const json = await response.json();
-    return json as Product;
+    return json.data as Product;
 }

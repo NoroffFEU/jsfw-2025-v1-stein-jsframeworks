@@ -11,15 +11,15 @@ export default function ProductCard({ product }: { product: Product }) {
     return (
         <Link href={`/product/${product.id}`} className="group relative rounded-2xl border p-4 shadow-sm hover:shadow-md transition">
         {pct !== null && (
-            <span className="absolute left-3 top-3 rounded-full bg-rose-600 px-3 py-1 text-xs font-semibold text-white">
-                --{pct}%
+            <span className="absolute left-3 top-3 z-10 rounded-full bg-rose-600 px-3 py-1 text-xs font-semibold text-white shadow">
+                - {pct}%
             </span>
         )}
         {/* eslint-disable-next-line @next/next/no-img-element */}
      <img
         src={product.image?.url}
         alt={product.image?.alt ?? product.title}
-        className="aspect-square w-full rounded-xl object-cover bg-gray-50 transition-transform duration-300 group-hover:scale-[1.03]"
+        className="relative z-0 aspect-square w-full rounded-xl object-cover bg-gray-50 transition-transform duration-300 group-hover:scale-[1.03]"
         loading="lazy"
       />
       <div className="mt-3 space-y-1.5">
