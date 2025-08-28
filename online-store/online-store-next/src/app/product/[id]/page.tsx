@@ -3,8 +3,10 @@ import type { Product } from '@/types/product';
 import { notFound } from 'next/navigation';
 import AddToCartButton from './AddToCartButton';
 
-type PageProps = { params: Promise<{ id: string }> };
 export const revalidate = 0;
+
+type PageProps = { params: Promise<{ id: string }> };
+
 
 export default async function ProductPage({ params }: PageProps) {
 const { id } = await params;
@@ -31,7 +33,11 @@ if (!product) {
 }
 
 
-const hasDiscount = typeof product.discountedPrice === "number" && product.discountedPrice < product.price;
+const hasDiscount =
+  typeof product.discountedPrice === "number" &&
+  product.discountedPrice < product.price;
+
+const priceToUse = hasDiscount ? product.discountedPrice! : product.price;
 
 return ( 
     <main className="mx-auto max-w-5xl px-4 py-8">
@@ -71,7 +77,12 @@ return (
                 ) : null}
 
                 {/* Add to Cart – placeholder */}
-                <AddToCartButton title={product.title} />
+                <AddToCartButton 
+                id={product.id}
+                title={product.title}
+                imageUrl={product.image?.url ?? ""}
+                price={priceToUse} />
+
 {/* Description & Reviews */}
           <article className="prose max-w-none">
             <h2 className="mt-6 text-lg font-semibold">Description</h2>
