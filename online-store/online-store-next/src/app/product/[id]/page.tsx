@@ -21,9 +21,9 @@ if (!product) {
     // notFound();
  return (
       <main className="mx-auto max-w-4xl px-4 py-10">
-        <h1 className="mb-4 text-xl font-bold">Kunne ikke hente produkt</h1>
+        <h1 className="mb-4 text-xl font-bold">Could not retrieve product</h1>
         <p className="mb-4">ID: <code>{id}</code></p>
-        <p className="mb-2">Rå-respons:</p>
+        <p className="mb-2">Raw-response:</p>
         <pre className="rounded bg-gray-100 p-3 text-xs overflow-auto">
 {JSON.stringify(product, null, 2)}
         </pre>
@@ -83,7 +83,7 @@ return (
                 imageUrl={product.image?.url ?? ""}
                 price={priceToUse} />
 
-{/* Description & Reviews */}
+                {/* Description & Reviews */}
           <article className="prose max-w-none">
             <h2 className="mt-6 text-lg font-semibold">Description</h2>
             <p className="whitespace-pre-wrap">
