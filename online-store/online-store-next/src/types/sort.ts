@@ -1,0 +1,1 @@
+export type SortKey = "price-asc" | "price-desc" | "name-asc";

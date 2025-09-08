@@ -22,7 +22,7 @@ export default function successPage() {
         </p>
 
       <div className="mt-8 flex items-center justify-center gap-3">
-        <Link href="/" className="rounded-xl border px-5 py-3 hover:bg-neutral-50">
+        <Link href="/" className="rounded-xl border px-5 py-3 hover:bg-neutral-800">
           Continue shopping
         </Link>
         <Link
