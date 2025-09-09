@@ -11,7 +11,8 @@ export default function ProductCard({ product }: { product: Product }) {
     return (
         <Link href={`/product/${product.id}`} className="group relative rounded-2xl border p-4 shadow-sm hover:shadow-md transition">
         {pct !== null && (
-            <span className="absolute left-3 top-3 z-10 rounded-full bg-rose-600 px-3 py-1 text-xs font-semibold text-white shadow">
+            <span className="absolute left-3 top-3 z-10 rounded-full bg-rose-600 px-3 py-1 text-xs font-semibold text-white shadow"
+            aria-label={`Discount ${pct}%`}>
                 - {pct}%
             </span>
         )}
