@@ -27,23 +27,23 @@ describe("ProductCard", () => {
   it("renders title and prices with discount sticker", () => {
     render(<ProductCard product={base} />);
 
-    // Tittel
+    // Title
     expect(screen.getByText("Test Product")).toBeInTheDocument();
 
-    // Rabattert pris
+    // Discounted price
     expect(screen.getByText(/80\.00 kr/)).toBeInTheDocument();
 
-    // Originalpris
+    // Original price
     expect(screen.getByText(/100\.00 kr/)).toBeInTheDocument();
 
-    // Rabattmerke -20% (rundingen i din komponent gir 20)
+    // Discount tag -20% 
     expect(screen.getByLabelText(/Discount 20%/i)).toBeInTheDocument();
   });
 
   it("does not show sticker when no discount", () => {
     const p: Product = { ...base, discountedPrice: 100 };
     render(<ProductCard product={p} />);
-    // Ingen tekst som matcher %-merket
+    // No discount tag
     expect(screen.queryByText(/-20/)).not.toBeInTheDocument();
   });
 });
