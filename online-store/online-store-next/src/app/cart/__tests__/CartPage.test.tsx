@@ -5,7 +5,6 @@ import { useCart } from "@/store/cart";
 import CartPage from "../page";
 
 beforeEach(() => {
-  // reset cart state før hver test
   useCart.setState({ items: [] });
 });
 
