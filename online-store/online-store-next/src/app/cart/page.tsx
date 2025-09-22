@@ -79,7 +79,7 @@ export default function CartPage() {
               className="col-span-12 mt-2 justify-self-start rounded border px-3 py-1 text-sm hover:bg-neutral-50 sm:col-span-0 sm:mt-0 sm:justify-self-end"
               onClick={() => {
                 remove(item.id);
-                toast.info(`Fjernet "${item.title}"`);
+                toast.info(`Removed ${item.title} from cart.`);
               }}
             >
               Remove

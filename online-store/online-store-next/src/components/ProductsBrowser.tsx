@@ -82,7 +82,9 @@ export default function ProductsBrowser({ products }: { products: Product[] }) {
 
         {showSuggestions && query && (
           <div className="mx-auto max-w-6xl px-4">
-            <div className="mb-3 rounded-xl border bg-neutral-800 p-2 shadow-sm">
+            <div className="mb-3 rounded-xl border bg-neutral-800 p-2 shadow-sm"
+            data-testid="suggestions"
+            >
               {suggestions.length > 0 ? (
                 <ul>
                   {suggestions.map((p) => (

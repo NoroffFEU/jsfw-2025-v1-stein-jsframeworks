@@ -1,6 +1,6 @@
 
 import Link from 'next/link';
-import HeaderCartBadge from "@/components/HeaderCartBadge";
+// import HeaderCartBadge from "@/components/HeaderCartBadge";
 
 export default function Header() {
   return (
@@ -14,7 +14,7 @@ export default function Header() {
           <Link href="/contact" className="underline hover:no-underline">
             Contact
           </Link>
-          <HeaderCartBadge />
+          {/* <HeaderCartBadge /> */}
         </div>
       </nav>
     </header>

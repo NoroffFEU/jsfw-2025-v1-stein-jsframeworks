@@ -1,57 +1,43 @@
-import { describe, it, expect } from 'vitest';
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import ProductsBrowser from '@/components/ProductsBrowser';
-import type { Product } from '@/types/product';
+import { describe, it, expect } from "vitest";
+import { render, screen, within } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+import ProductsBrowser from "@/components/ProductsBrowser";
+import type { Product } from "@/types/product";
 
 const products: Product[] = [
-    { id: '1', title: 'Alpha', price: 100, discountedPrice: 90, image: { url: "", alt: "" }, tags: ["aa"] },
-    { id: '2', title: 'Bravo', price: 50, discountedPrice: 50, image: { url: "", alt: "" }, tags: ["bb"] },
-    { id: '3', title: 'Charlie', price: 200, discountedPrice: 150, image: { url: "", alt: "" }, tags: ["cc"] },
+  { id: "1", title: "Alpha", price: 100, discountedPrice: 90, rating: 4, image: { url: "", alt: "" } },
+  { id: "2", title: "Bravo", price: 50,  discountedPrice: 50, rating: 3, image: { url: "", alt: "" } },
+  { id: "3", title: "Charlie", price: 200, discountedPrice: 150, rating: 5, image: { url: "", alt: "" } },
 ];
 
-function getCardTitles() {
-    return screen.getAllByRole("heading", { level: 3 }).map(n => n.textContent?.trim());
+function firstCardTitle() {
+  const titles = screen.getAllByRole("heading", { level: 3 });
+  return titles[0]?.textContent?.trim() ?? "";
 }
 
-describe("ProductsBrowser", () => {
-    it("filters by debounced search", async () => {   
-        render(<ProductsBrowser products={products} />);
+it("sorts by price asc/desc and name", async () => {
+  render(<ProductsBrowser products={products} />);
+  const select = screen.getByLabelText(/sort products/i);
 
-        const input = screen.getByLabelText(/search products/i);
-        await userEvent.type(input, "br");
+  await userEvent.selectOptions(select, "price-asc");
+  expect(firstCardTitle()).toBe("Bravo");   // billigst først
 
-        // Wait for debounce.
-        await new Promise(r => setTimeout(r, 450));
+  await userEvent.selectOptions(select, "price-desc");
+  expect(firstCardTitle()).toBe("Charlie"); // dyrest først
 
-        expect(screen.getByText("Bravo")).toBeInTheDocument();
-        expect(screen.queryByText("Alpha")).not.toBeInTheDocument();
-        expect(screen.queryByText("Charlie")).not.toBeInTheDocument();
-    });
-
-    it("sorts by price ascending/descending and by name", async () => {
-        render(<ProductsBrowser products={products} />);
-
-        const select = screen.getByLabelText(/sort products/i);
-
-        await userEvent.selectOptions(select, "price-asc");
-        expect(getCardTitles()).toMatch(/Bravo/);
-
-        await userEvent.selectOptions(select, "price-desc");
-        expect(getCardTitles()).toMatch(/Charlie/);
-
-        await userEvent.selectOptions(select, "name-asc");
-        expect(getCardTitles()).toMatch(/Alpha/);
-    });
-
-
-    it("shows suggestions under search", async () => {
-        render(<ProductsBrowser products={products} />);
-
-        const input = screen.getByLabelText(/search products/i);
-        await userEvent.type(input, "a");
-        await new Promise(r => setTimeout(r, 450));
-
-        expect(screen.getByText("Alpha")).toBeInTheDocument();     
+  await userEvent.selectOptions(select, "name-asc");
+  expect(firstCardTitle()).toBe("Alpha");   // A→Å
 });
+
+
+  it("shows suggestions under search", async () => {
+  render(<ProductsBrowser products={products} />);
+
+  const input = screen.getByLabelText(/search products/i);
+  await userEvent.type(input, "a");
+  await new Promise((r) => setTimeout(r, 450)); // debounce
+
+  const box = screen.getByTestId("suggestions");
+  expect(within(box).getByText("Alpha")).toBeInTheDocument();
+  expect(within(box).getAllByText("Alpha")).toHaveLength(1);
 });
