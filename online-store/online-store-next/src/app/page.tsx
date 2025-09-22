@@ -1,5 +1,4 @@
 import { fetchProducts } from "@/lib/api";
-import ProductCard from "@/components/ProductCard";
 import ProductsBrowser from "@/components/ProductsBrowser";
 
 export const revalidate = 0;

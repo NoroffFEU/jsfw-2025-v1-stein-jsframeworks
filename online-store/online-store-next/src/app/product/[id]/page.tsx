@@ -14,7 +14,7 @@ let product: Product | null = null;
 
 try {
   product = await fetchProduct(id);
-} catch (e) {
+} catch {
     notFound();
 }
 if (!product) {

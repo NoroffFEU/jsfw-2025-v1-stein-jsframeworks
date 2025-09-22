@@ -1,11 +1,21 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { render, screen } from "@testing-library/react";
-// 👇 mock next/link til et vanlig <a>-element
-import { vi } from "vitest";
+import React from "react";
+
 vi.mock("next/link", () => ({
-  default: ({ href, children, ...props }: any) => (
-    <a href={href} {...props}>{children}</a>
-  ),
+  default: (
+    props: React.AnchorHTMLAttributes<HTMLAnchorElement> & {
+      href: string;
+      children: React.ReactNode;
+    }
+  ) => {
+    const { href, children, ...rest } = props;
+    return (
+      <a href={href} {...rest}>
+        {children}
+      </a>
+    );
+  },
 }));
 
 import ProductCard from "@/components/ProductCard";

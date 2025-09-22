@@ -22,7 +22,7 @@ function getEffectivePrice(p: Product) {
         : p.price; 
 }
 
-export default function ProductsBrowser({ products }: { products: Product[] }) {
+export default function ProductsBrowser({ products }: Props) {
     const [rawQuery, setRawQuery] = useState("");
     const query = useDebounce(rawQuery, 400);
     const [sort, setSort] = useState<SortKey>("price-asc");

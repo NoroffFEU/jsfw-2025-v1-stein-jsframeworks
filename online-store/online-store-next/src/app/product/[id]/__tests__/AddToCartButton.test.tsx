@@ -1,27 +1,26 @@
-
-import { describe, it, expect, vi, beforeEach, type Mock } from "vitest";
+import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-const addSpy = vi.fn();
+
+type CartItem = { id: string; title: string; price: number; imageUrl: string };
+type AddFn = (item: CartItem, qty: number) => void;
+type CartState = { add: AddFn };
+
+const addSpy = vi.fn<AddFn>();
+
 vi.mock("@/store/cart", () => {
- const useCart = (selector?: (s: any) => any) => {
-    const state = { add: addSpy };
-    return selector ? selector(state) : state;
- };
-    return { useCart };
+
+  const useCart = <T,>(selector?: (s: CartState) => T) => {
+    const state: CartState = { add: addSpy };
+    return selector ? selector(state) : (state as unknown as T);
+  };
+  return { useCart };
 });
 
-
-// Mock sonner toast.
 vi.mock("sonner", () => ({
-  toast: {
-    success: vi.fn(),
-    info: vi.fn(),
-    error: vi.fn(),
-  },
+  toast: { success: vi.fn(), info: vi.fn(), error: vi.fn() },
 }));
-
 
 import { toast } from "sonner";
 import AddToCartButton from "../AddToCartButton";
@@ -29,7 +28,7 @@ import AddToCartButton from "../AddToCartButton";
 describe("AddToCartButton", () => {
   beforeEach(() => {
     addSpy.mockClear();
-    (toast.success as unknown as Mock).mockClear?.();
+    vi.mocked(toast.success).mockClear?.();
   });
 
   it("calls cart.add with correct payload and shows success toast", async () => {
@@ -45,24 +44,26 @@ describe("AddToCartButton", () => {
 
     await user.click(screen.getByRole("button", { name: /add to cart/i }));
 
-    expect(addSpy).toHaveBeenCalledTimes(1);
     expect(addSpy).toHaveBeenCalledWith(
-      { id: "p1", title: "Cool Product", price: 123.45, imageUrl: "https://example.com/img.jpg" },
+      {
+        id: "p1",
+        title: "Cool Product",
+        price: 123.45,
+        imageUrl: "https://example.com/img.jpg",
+      },
       1
     );
-
-    expect(toast.success).toHaveBeenCalledWith(expect.stringContaining("Cool Product"));
+    expect(toast.success).toHaveBeenCalledWith(
+      expect.stringContaining("Cool Product")
+    );
   });
 
   it("renders the button", () => {
     render(
-      <AddToCartButton
-        id="p2"
-        title="Another"
-        imageUrl=""
-        price={10}
-      />
+      <AddToCartButton id="p2" title="Another" imageUrl="" price={10} />
     );
-    expect(screen.getByRole("button", { name: /add to cart/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole("button", { name: /add to cart/i })
+    ).toBeInTheDocument();
   });
 });

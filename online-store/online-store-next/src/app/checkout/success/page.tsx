@@ -1,11 +1,12 @@
 
 "use client";
+
 import { useEffect } from "react";
 import Link from "next/link";
 import { useCart } from "@/store/cart";
 import { toast } from "sonner";
 
-export default function successPage() {
+export default function SuccessPage() {
     const clear = useCart((s) => s.clear);
 
     useEffect(() => {
