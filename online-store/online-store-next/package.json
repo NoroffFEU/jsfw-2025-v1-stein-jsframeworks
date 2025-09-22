@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
+    "dev:webpack": "set NEXT_DISABLE_TURBOPACK=1&& next dev",
     "build": "next build --turbopack",
     "start": "next start",
     "lint": "eslint",
@@ -32,11 +33,9 @@
     "@types/react-dom": "^19",
     "@vitest/coverage-v8": "^3.2.4",
     "@vitest/ui": "^3.2.4",
-    "autoprefixer": "^10.4.21",
     "eslint": "^9",
     "eslint-config-next": "15.5.0",
     "jsdom": "^26.1.0",
-    "postcss": "^8.5.6",
     "tailwindcss": "^4.1.13",
     "typescript": "^5",
     "vitest": "^3.2.4"
