@@ -4,6 +4,7 @@
 import Link from "next/link";
 import { useCart } from "@/store/cart";
 import { toast } from "sonner";
+import Image from "next/image";
 
 function formatNOK(n: number) {
     return `${n.toFixed(2)} kr`;
@@ -34,9 +35,11 @@ export default function CartPage() {
             <ul className="divide-y rounded-2xl border">
                 {items.map((item) => (
                     <li key={item.id} className="grid grid-cols-12 items-center gap-4 p-4">
-                        <img
+                        <Image
                         src={item.imageUrl}
                         alt={item.title}
+                        width={80}
+                        height={80}
                         className="col-span-2 h-20 w-20 rounded object-cover"
                         />
 

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ToastProvider from "@/components/ToastProvider";
-import Header from "@/components/Header";
+// import Header from "@/components/Header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,9 +22,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body>
+      <body className={`${geistSans.variable} ${geistMono.variable} font-sans`}>
         <ToastProvider /> 
-        <Header />
+        {/* <Header /> */}
+        <nav style={{padding: 8, border: "1px solid"}}>HEADER TEST</nav>
         {children}
       </body>
     </html>

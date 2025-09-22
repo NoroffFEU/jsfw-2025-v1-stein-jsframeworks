@@ -25,12 +25,12 @@ export default function ContactPage() {
         mode: "onTouched",
     });
 
-    const onSubmit = async (data: ContactForm) => {
+    const onSubmit = async (_data: ContactForm) => {
         try {
             await new Promise((r) => setTimeout(r, 500));
             toast.success("Message sent, we will get back to you soon!");
             reset();
-        } catch (error) {
+        } catch (_error) {
             toast.error("Something went wrong, please try again later.");
         }
     };
