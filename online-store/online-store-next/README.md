@@ -21,17 +21,12 @@ JS Frameworks 1 CA at Noroff Vocational School built with **Next.js 15 (App Rout
 
 ### Features
 
-Home page with product grid (/)
-
-Product detail page (/product/[id])
-
-Cart with global state (Zustand) (/cart) — uses next/image
-
-Checkout success page (/checkout/success)
-
-Contact form with React Hook Form + Zod + sonner toasts (/contact)
-
-Optimized images via next/image
+* Home page with product grid (```/```)
+* Product detail page (```/product/[id]```)
+* Cart with global state (Zustand) (/cart) — uses next/image
+* Checkout success page (/checkout/success)
+* Contact form with React Hook Form + Zod + sonner toasts (/contact)
+* Optimized images via next/image
 
 
 ### Tech Stack
