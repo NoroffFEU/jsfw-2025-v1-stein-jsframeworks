@@ -170,19 +170,19 @@ export default function ToastProvider() {
 ## Project Structure
 
 src/
- - app/
-  - layout.tsx
-  - page.tsx
-  - globals.css
-  - (routes: product/[id], cart, checkout/success, contact)
-  - components/
-   - Header.tsx
-   - HeaderCartBadge.tsx
-   - ToastProvider.tsx
-   - public/
-- next.config.ts
-- postcss.config.mjs
-- tsconfig.json
+ -- app/
+  -- layout.tsx
+  -- page.tsx
+  -- globals.css
+  -- (routes: product/[id], cart, checkout/success, contact)
+  -- components/
+   -- Header.tsx
+   -- HeaderCartBadge.tsx
+   -- ToastProvider.tsx
+   -- public/
+-- next.config.ts
+-- postcss.config.mjs
+-- tsconfig.json
 
 
 ## Deployment (Vercel)
