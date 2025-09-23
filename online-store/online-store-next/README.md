@@ -56,7 +56,7 @@ Requirements
  On Windows, if dev crashes with Turbopack, use Webpack for dev: 
 
  ```bash
- 
+
  npm run dev:webpack
 
  ```
@@ -249,6 +249,16 @@ npm run dev:webpack
 * Add domains to `next.config.ts > images.remotePatterns` and redeploy.
 
 
+
+## License
+
+Code is licensed under the **MIT License**.
+
+© 2025 Stein Arild Gansmoe. 
+
+**Assets:** Product images, logos, and other media are © their respective owners and are **not** covered by the MIT license unless stated otherwise.  
+**Fonts:** If bundled, fonts may carry their own licenses (e.g. SIL Open Font License).  
+**Third-party:** This project uses open-source libraries under permissive licenses (e.g. MIT). Refer to each library’s repository for details.
 
 
 
