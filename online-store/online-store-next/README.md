@@ -47,15 +47,16 @@ Requirements
  * npm
 
  Install & run
- ```
+ ```bash
  npm ci
  npm run dev
- > # http:localhost:3000
+ # http:localhost:3000
  ```
 
  On Windows, if dev crashes with Turbopack, use Webpack for dev: 
 
- ```
+ ```bash
+ 
  npm run dev:webpack
 
  ```
@@ -166,6 +167,8 @@ export default function ToastProvider() {
 }
 
 ```
+
+
 
 ## Project Structure
 
