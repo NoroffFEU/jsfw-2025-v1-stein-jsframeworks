@@ -2,21 +2,21 @@
 
 JS Frameworks 1 CA at Noroff Vocational School built with **Next.js 15 (App Router)**, **React 19**, **Tailwind CSS v4**, **Zustand** for cart state, **React Hook Form** + **Zod** for forms/validation, and **sonner** for toasts. Deployed on **Vercel**.
 
- - Production: https://jsfw-2025-v1-stein-jsframeworks.vercel.app/
+ - Production: [JS2 Frameworks](https://jsfw-2025-v1-stein-jsframeworks.vercel.app/)
  - Preview deployments: auto-created per commit/branch in Vercel.
 
 ## Table of Contents
 
- * Features
- * Tech Stack
- * Getting Started
- * Scripts
- * Configuration
- * Project Structure
- * Deployment (Vercel)
- * Common Warnings & Quick Fixes
- * Troubleshooting
- * License
+ * [Features](#features)
+ * [Tech Stack](#tech-stack)
+ * [Getting Started](#getting-started)
+ * [Scripts](#scripts)
+ * [Configuration](#configuration)
+ * [Project Structure](#project-structure)
+ * [Deployment (Vercel)](#deployment-(vercel))
+ * [Common Warnings & Quick Fixes](#common-warnings-&-quick-fixes)
+ * [Troubleshooting](#troubleshooting)
+ * [License](#license)
 
 
 ### Features
@@ -50,7 +50,7 @@ Requirements
  ```
  npm ci
  npm run dev
- # http:localhost:3000
+ > # http:localhost:3000
  ```
 
  On Windows, if dev crashes with Turbopack, use Webpack for dev: 
@@ -62,7 +62,7 @@ Requirements
 
 ### Scripts
 
-```
+```json
 {
   "scripts": {
     "dev": "next dev",
@@ -82,8 +82,10 @@ Requirements
 ### Configuration
 
 **Tailwind v4**
+
 ```src/app/global.css```
-```
+
+```css
 
 @import "tailwindcss";
 
@@ -98,7 +100,7 @@ body { background:var(--background); color:var(--foreground); }
 
 ```postcss.config.mjs```
 
-```
+```js
 export default {
   plugins: {
     "@tailwindcss/postcss": {},
@@ -106,5 +108,143 @@ export default {
 }
 
 ```
+With v4 you **do not** use `@tailwind base/components/utilities`. Don't mix v3 directives with v4.
+
+
+
+**Next.js (remote images)**
+
+`next.config.ts`
+
+```ts
+import type { NextConfig } from "next"
+
+const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [
+      { protocol: "https", hostname: "**.noroff.dev" },
+      // add more domains if needed
+    ],
+  },
+}
+
+export default nextConfig
+```
+
+**Layout & Header**
+
+`src/app/layout.tsx`
+
+```tsx
+
+import "./globals.css"
+import ToastProvider from "@/components/ToastProvider"
+import Header from "@/components/Header"
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <body className="font-sans">
+        <ToastProvider />
+        <Header />
+        {children}
+      </body>
+    </html>
+  )
+}
+
+```
+
+`src/components/ToastProvider.tsx`
+
+```tsx
+
+"use client"
+import { Toaster } from "sonner"
+export default function ToastProvider() {
+  return <Toaster position="top-right" richColors />
+}
+
+```
+
+## Project Structure
+
+src/
+ - app/
+  - layout.tsx
+  - page.tsx
+  - globals.css
+  - (routes: product/[id], cart, checkout/success, contact)
+  - components/
+   - Header.tsx
+   - HeaderCartBadge.tsx
+   - ToastProvider.tsx
+   - public/
+- next.config.ts
+- postcss.config.mjs
+- tsconfig.json
+
+
+## Deployment (Vercel)
+
+```yaml
+
+---
+
+## Deployment
+- **Root Directory:** `online-store/online-store-next`
+- **Build command:** `npm run build` (Turbopack). If it fails, fallback: `npm run build:webpack`
+- **Production domain** points to the latest **Production Deployment**.  
+  Use **“Promote to Production”** on a working preview to make it live.
+
+---
+
+## Common Warnings & Quick Fixes
+
+**`no-img-element`** → use `next/image` (e.g., in `/cart/page.tsx`):
+```tsx
+import Image from "next/image"
+<Image
+  src={item.imageUrl || "/placeholder.png"}
+  alt={item.title}
+  width={80}
+  height={80}
+  className="h-20 w-20 rounded object-cover"
+/>
+
+```
+> [!NOTE]
+> Remember to whitelist image domains in `next.config.ts`.
+
+* If you must keep <img>, silence on that line:
+
+```tsx
+
+{/* eslint-disable-next-line @next/next/no-img-element */}
+<img ... />
+
+```
+
+## Troubleshooting
+
+**Turbopack crashes on Windows (dev server)** 
+
+* Use Webpack dev:
+
+```bash
+
+npm run dev:webpack
+
+```
+
+**Images not showing** 
+
+* Add domains to `next.config.ts > images.remotePatterns` and redeploy.
+
+
+
+
+
+
 
 
