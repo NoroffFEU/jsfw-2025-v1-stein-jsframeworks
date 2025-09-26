@@ -48,7 +48,7 @@ export default function CartPage() {
                             <div className="opacity-80">{formatNOK(item.price)}</div>
                         </div>
 
-                        <div className="col-span-3 flex items-center gap-2">
+                        <div className="col-span-12 sm:col-span-3 flex items-center gap-2 mt-2 sm:mt-0">
                             <button
                             aria-label="decrease quantity"
                             className="rounded border px-2"
@@ -67,19 +67,19 @@ export default function CartPage() {
                             />
                             <button 
                             aria-label="increase quantity"
-                            className="rounded border px-2"
+                            className="rounded border px-2 shrink-0"
                             onClick={() => setQty(item.id, item.quantity + 1)}
                             >
                                 +
                             </button>
                         </div>
-                    <div className="col-span-2 text-right font-semibold">
+                    <div className="col-span-12 sm:col-span-2 mt-2 sm:mt-0 text-right font-semibold sm:justify-self-end whitespace-nowrap">
               {formatNOK(item.price * item.quantity)}
             </div>
 
            
             <button
-              className="col-span-12 mt-2 justify-self-start rounded border px-3 py-1 text-sm hover:bg-neutral-50 sm:col-span-0 sm:mt-0 sm:justify-self-end"
+              className="justify-self-start rounded border px-3 py-1 text-sm hover:bg-neutral-600 bg-neutral-800 sm:col-span-12 sm:justify-self-end"
               onClick={() => {
                 remove(item.id);
                 toast.info(`Removed ${item.title} from cart.`);
