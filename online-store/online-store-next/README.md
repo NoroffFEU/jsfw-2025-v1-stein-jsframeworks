@@ -91,11 +91,16 @@ Requirements
 @import "tailwindcss";
 
 /* Your own CSS below */
-:root { --background:#ffffff; --foreground:#171717; }
-@media (prefers-color-scheme: dark) {
-  :root { --background:#0a0a0a; --foreground:#ededed; }
+:root {
+  color-scheme: dark;           
+  --background: #131111;       
+  --foreground: #ededed;    
 }
-body { background:var(--background); color:var(--foreground); }
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
 
 ```
 

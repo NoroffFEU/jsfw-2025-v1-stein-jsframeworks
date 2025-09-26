@@ -3,6 +3,7 @@
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import type { SubmitHandler } from "react-hook-form";
 import { toast } from "sonner";
 
 const ContactSchema = z.object({
@@ -25,12 +26,12 @@ export default function ContactPage() {
         mode: "onTouched",
     });
 
-    const onSubmit = async (_data: ContactForm) => {
+    const onSubmit: SubmitHandler<ContactForm> = async () => {
         try {
             await new Promise((r) => setTimeout(r, 500));
             toast.success("Message sent, we will get back to you soon!");
             reset();
-        } catch (_error) {
+        } catch {
             toast.error("Something went wrong, please try again later.");
         }
     };
@@ -93,7 +94,7 @@ export default function ContactPage() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="rounded-xl bg-black px-5 py-3 text-white disabled:opacity-60"
+            className="rounded-xl bg-neutral-800 hover:bg-neutral-600 px-5 py-3 text-white disabled:opacity-60"
           >
             {isSubmitting ? "Sending..." : "Send Message"}
           </button>

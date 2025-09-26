@@ -99,7 +99,7 @@ export default function CartPage() {
         </div>
         <Link
           href="/checkout/success"
-          className="rounded-xl bg-black px-5 py-3 text-white hover:bg-neutral-800"
+          className="rounded-xl bg-neutral-800 px-5 py-3 text-white hover:bg-neutral-600"
         >
           Checkout
         </Link>
