@@ -76,14 +76,14 @@ return (
                     </div>
                 ) : null}
 
-                {/* Add to Cart – placeholder */}
+                
                 <AddToCartButton 
                 id={product.id}
                 title={product.title}
                 imageUrl={product.image?.url ?? ""}
                 price={priceToUse} />
 
-                {/* Description & Reviews */}
+               
           <article className="prose max-w-none">
             <h2 className="mt-6 text-lg font-semibold">Description</h2>
             <p className="whitespace-pre-wrap">

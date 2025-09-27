@@ -36,7 +36,7 @@ export default function HeaderCartBadge() {
   )
 
   return (
-    <Link href="/cart" className="relative inline-flex items-center" aria-label="Open cart">
+    <Link href="/cart" className="relative inline-flex items-center" prefetch aria-label="Open cart">
       <ShoppingCart className="h-6 w-6 text-white" aria-hidden />
       {count > 0 && (
         <span
