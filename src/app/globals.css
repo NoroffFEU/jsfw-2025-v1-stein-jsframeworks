@@ -2,8 +2,9 @@
 
 :root {
   color-scheme: dark;           
-  --background: #131111;       
-  --foreground: #ededed;    
+  --background: #1f1c1c;       
+  --foreground: #10c9c9;    
+  --hover: #22FFFF;
 }
 
 body {

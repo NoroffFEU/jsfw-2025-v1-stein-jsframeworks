@@ -1,89 +1,107 @@
-import { fetchProduct } from '@/lib/api';
-import type { Product } from '@/types/product';
-import { notFound } from 'next/navigation';
-import AddToCartButton from './AddToCartButton';
+import Image from "next/image";
+import { notFound } from "next/navigation";
+import { fetchProduct } from "@/lib/api";
+import type { Product } from "@/types/product";
+import AddToCartButton from "./AddToCartButton";
 
 export const revalidate = 0;
 
 type PageProps = { params: Promise<{ id: string }> };
 
-
 export default async function ProductPage({ params }: PageProps) {
-const { id } = await params;
-let product: Product | null = null;
+  const { id } = await params;
 
-try {
-  product = await fetchProduct(id);
-} catch {
+  let product: Product | null = null;
+
+  try {
+    product = await fetchProduct(id);
+  } catch {
     notFound();
-}
-if (!product) {
-    // notFound();
- return (
+  }
+
+  if (!product) {
+    return (
       <main className="mx-auto max-w-4xl px-4 py-10">
-        <h1 className="mb-4 text-xl font-bold">Could not retrieve product</h1>
-        <p className="mb-4">ID: <code>{id}</code></p>
-        <p className="mb-2">Raw-response:</p>
-        <pre className="rounded bg-gray-100 p-3 text-xs overflow-auto">
-{JSON.stringify(product, null, 2)}
+        <h1 className="mb-4 text-xl font-bold">
+          Could not retrieve product
+        </h1>
+        <p className="mb-4">
+          ID: <code>{id}</code>
+        </p>
+        <p className="mb-2">Raw response:</p>
+        <pre className="overflow-auto rounded bg-gray-100 p-3 text-xs">
+          {JSON.stringify(product, null, 2)}
         </pre>
       </main>
     );
+  }
 
-}
+  const hasDiscount =
+    typeof product.discountedPrice === "number" &&
+    product.discountedPrice < product.price;
 
+  const priceToUse = hasDiscount
+    ? product.discountedPrice!
+    : product.price;
 
-const hasDiscount =
-  typeof product.discountedPrice === "number" &&
-  product.discountedPrice < product.price;
-
-const priceToUse = hasDiscount ? product.discountedPrice! : product.price;
-
-return ( 
+  return (
     <main className="mx-auto max-w-5xl px-4 py-8">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img 
-                src={product.image?.url} 
-                alt={product.image?.alt ?? product.title} 
-                className="w-full rounded border object-cover" 
-                />
-
-            <section className="space-y-4">
-                <h1 className="text-2xl font-bold">{product.title}</h1>
-
-                <div className="flex items-baseline gap-3">
-                    {hasDiscount && (<span className="text-2xl font-semibold">
-                        {product.discountedPrice!.toFixed(2)} kr
-                    </span>
-                )}
-                <span 
-                className={
-                    hasDiscount ? "line-through opacity-60" : "text-2xl font-semibold"
-                }
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+        <div className="relative aspect-square w-full overflow-hidden rounded border bg-gray-50">
+          <Image
+            src={product.image?.url ?? "/placeholder.png"}
+            alt={product.image?.alt ?? product.title}
+            fill
+            className="object-cover"
+            sizes="(min-width: 768px) 50vw, 100vw"
+            priority={false}
+          />
+        </div>
+        <section className="space-y-4">
+          <header>
+            <h1 className="text-2xl font-bold">{product.title}</h1>
+          </header>
+          <div className="flex items-baseline gap-3">
+            {hasDiscount && (
+              <>
+                <span className="text-2xl font-semibold text-emerald-600">
+                  {product.discountedPrice!.toFixed(2)} kr
+                </span>
+                <span className="rounded bg-emerald-100 px-2 py-0.5 text-xs font-semibold text-emerald-700">
+                  On sale
+                </span>
+              </>
+            )}
+            <span
+              className={
+                hasDiscount
+                  ? "text-sm text-gray-500 line-through"
+                  : "text-2xl font-semibold"
+              }
+            >
+              {product.price !== undefined
+                ? `${product.price.toFixed(2)} kr`
+                : "N/A"}
+            </span>
+          </div>
+          {product.tags?.length ? (
+            <div className="flex flex-wrap gap-2">
+              {product.tags.map((t) => (
+                <span
+                  key={t}
+                  className="rounded-full border px-3 py-1 text-xs text-foreground"
                 >
-                         {product.price !== undefined ? `${product.price.toFixed(2)} kr` : "N/A"}
-                    </span>
-                </div>
-
-                {product.tags?.length ? (
-                    <div className="flex flex-wrap gap-2">
-                        {product.tags.map((t) => (
-                            <span key={t} className="rouned-full border px-3 py-1 text-xs">
-                                {t}
-                                </span>
-                        ))}
-                    </div>
-                ) : null}
-
-                
-                <AddToCartButton 
-                id={product.id}
-                title={product.title}
-                imageUrl={product.image?.url ?? ""}
-                price={priceToUse} />
-
-               
+                  {t}
+                </span>
+              ))}
+            </div>
+          ) : null}
+          <AddToCartButton
+            id={product.id}
+            title={product.title}
+            imageUrl={product.image?.url ?? ""}
+            price={priceToUse}
+          />
           <article className="prose max-w-none">
             <h2 className="mt-6 text-lg font-semibold">Description</h2>
             <p className="whitespace-pre-wrap">
@@ -104,9 +122,8 @@ return (
               </>
             ) : null}
           </article>
-
-            </section>
-        </div>
+        </section>
+      </div>
     </main>
-);
+  );
 }

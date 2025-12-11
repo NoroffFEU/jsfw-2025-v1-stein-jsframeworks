@@ -8,12 +8,12 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-40 border-b bg-neutral-800 backdrop-blur">
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
-        <Link href="/" className="text-lg font-bold">
+        <Link href="/" className="text-lg font-bold hover:text-cyan-200">
           Online Store
         </Link>
 
         <div className="flex items-center gap-6">
-          <Link href="/contact" className="underline hover:no-underline">
+          <Link href="/contact" className="hover:text-cyan-200">
             Contact
           </Link>
           <HeaderCartBadge />

@@ -37,7 +37,7 @@ export default function HeaderCartBadge() {
 
   return (
     <Link href="/cart" className="relative inline-flex items-center" prefetch aria-label="Open cart">
-      <ShoppingCart className="h-6 w-6 text-white" aria-hidden />
+      <ShoppingCart className="h-6 w-6 text-foreground hover:text-cyan-200" aria-hidden />
       {count > 0 && (
         <span
           className="absolute -right-2 -top-2 min-w-5 h-5 px-1 rounded-full bg-white text-green-800
@@ -50,7 +50,7 @@ export default function HeaderCartBadge() {
       {count > 0 && (
         <span
           className="absolute left-1/2 top-7 -translate-x-1/2 text-[10px] leading-none
-                     text-white/80 whitespace-nowrap"
+                     text-foreground/80 whitespace-nowrap"
         >
           {fmt.format(total)}
         </span>

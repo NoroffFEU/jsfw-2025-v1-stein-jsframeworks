@@ -37,6 +37,11 @@ The following updates have been done to project (11.12.2025)
 ```
   - Restructured folders. 
   - Merged clean-setup branch into main. 
+  - Updated product cards. 
+   - Added star icons to product card. 
+  - Updated color palette.
+  - Added Footer to the page. 
+
   
 ```
 

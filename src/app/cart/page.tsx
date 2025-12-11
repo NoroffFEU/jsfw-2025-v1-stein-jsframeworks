@@ -20,7 +20,7 @@ export default function CartPage() {
         return (
             <main className="mx-auto max-w-5xl py-10">
                 <h1 className="mb-4 text-2xl font-bold">Cart</h1>
-                <p>Cart is empty.</p>
+                <p>The cart is empty. Add a product in order to complete a purchase.</p>
                 <Link href="/" className="mt-4 inline-block underline">
                 Go back to products
                 </Link>
@@ -99,7 +99,7 @@ export default function CartPage() {
         </div>
         <Link
           href="/checkout/success"
-          className="rounded-xl bg-neutral-800 px-5 py-3 text-white hover:bg-neutral-600"
+          className="rounded-xl bg-neutral-800 px-5 py-3 text-foreground hover:bg-neutral-600"
         >
           Checkout
         </Link>
