@@ -41,8 +41,6 @@ The following updates have been done to project (11.12.2025)
    - Added star icons to product card. 
   - Updated color palette.
   - Added Footer to the page. 
-
-  
 ```
 
 ### Tech Stack
@@ -195,7 +193,7 @@ export default function ToastProvider() {
 
 ```lua
 
-online-store-next/
+jsfw-2025-v1-stein-jsframeworks/
 ├─ src/
 │  ├─ app/
 │  │  ├─ layout.tsx

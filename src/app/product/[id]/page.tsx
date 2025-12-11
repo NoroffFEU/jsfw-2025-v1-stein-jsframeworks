@@ -47,7 +47,7 @@ export default async function ProductPage({ params }: PageProps) {
   return (
     <main className="mx-auto max-w-5xl px-4 py-8">
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-        <div className="relative aspect-square w-full overflow-hidden rounded border bg-gray-50">
+        <div className="relative aspect-square w-full overflow-hidden border bg-gray-50">
           <Image
             src={product.image?.url ?? "/placeholder.png"}
             alt={product.image?.alt ?? product.title}
