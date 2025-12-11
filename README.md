@@ -33,6 +33,7 @@ JS Frameworks 1 CA at Noroff Vocational School built with **Next.js 15 (App Rout
 
 
 ### Project Update
+
 The following updates have been done to project (11.12.2025)
 ```
   - Restructured folders. 
@@ -187,8 +188,6 @@ export default function ToastProvider() {
 
 ```
 
-
-
 ## Project Structure
 
 ```lua
@@ -218,38 +217,11 @@ jsfw-2025-v1-stein-jsframeworks/
 ---
 
 ## Deployment
-- **Root Directory:** `online-store/online-store-next`
 - **Build command:** `npm run build` (Turbopack). If it fails, fallback: `npm run build:webpack`
 - **Production domain** points to the latest **Production Deployment**.  
   Use **“Promote to Production”** on a working preview to make it live.
 
 ---
-
-## Common Warnings & Quick Fixes
-
-**`no-img-element`** → use `next/image` (e.g., in `/cart/page.tsx`):
-```tsx
-import Image from "next/image"
-<Image
-  src={item.imageUrl || "/placeholder.png"}
-  alt={item.title}
-  width={80}
-  height={80}
-  className="h-20 w-20 rounded object-cover"
-/>
-
-```
-> [!NOTE]
-> Remember to whitelist image domains in `next.config.ts`.
-
-* If you must keep <img>, silence on that line:
-
-```tsx
-
-{/* eslint-disable-next-line @next/next/no-img-element */}
-<img ... />
-
-```
 
 ## Troubleshooting
 
@@ -263,21 +235,11 @@ npm run dev:webpack
 
 ```
 
-**Images not showing** 
-
-* Add domains to `next.config.ts > images.remotePatterns` and redeploy.
-
-
-
 ## License
 
 Code is licensed under the **MIT License**.
 
 © 2025 Stein Arild Gansmoe. 
-
-**Assets:** Product images, logos, and other media are © their respective owners and are **not** covered by the MIT license unless stated otherwise.  
-**Fonts:** If bundled, fonts may carry their own licenses (e.g. SIL Open Font License).  
-**Third-party:** This project uses open-source libraries under permissive licenses (e.g. MIT). Refer to each library’s repository for details.
 
 
 

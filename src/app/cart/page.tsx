@@ -1,6 +1,4 @@
-
 "use client";
-
 import Link from "next/link";
 import { useCart } from "@/store/cart";
 import { toast } from "sonner";
@@ -9,13 +7,8 @@ import Image from "next/image";
 function formatNOK(n: number) {
     return `${n.toFixed(2)} kr`;
 }
-
 export default function CartPage() {
-
-
     const { items, setQty, remove, total } = useCart();
-
-
     if (!items.length) {
         return (
             <main className="mx-auto max-w-5xl py-10">
@@ -27,7 +20,6 @@ export default function CartPage() {
             </main>
         );
     }
-
     return (
         <main className="mx-auto max-w-5xl px-4 py-10">
             <h1 className="mb-6 text-2xl font-bold">Cart</h1>
@@ -76,8 +68,6 @@ export default function CartPage() {
                     <div className="col-span-12 sm:col-span-2 mt-2 sm:mt-0 text-right font-semibold sm:justify-self-end whitespace-nowrap">
               {formatNOK(item.price * item.quantity)}
             </div>
-
-           
             <button
               className="justify-self-start rounded border px-3 py-1 text-sm hover:bg-neutral-600 bg-neutral-800 sm:col-span-12 sm:justify-self-end"
               onClick={() => {
@@ -89,9 +79,7 @@ export default function CartPage() {
             </button>
           </li>
         ))}
-      </ul>
-
-     
+      </ul>    
       <div className="mt-6 flex items-center justify-between">
         <div className="text-lg">
           <span className="opacity-70">Total:</span>{" "}

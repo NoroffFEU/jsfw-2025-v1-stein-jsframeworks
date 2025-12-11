@@ -6,17 +6,13 @@ import { toast } from "sonner";
 
 export default function SuccessPage() {
   const clear = useCart((s) => s.clear);
-  const fired = useRef(false); // guard against Strict Mode double-invoke
-
+  const fired = useRef(false);
   useEffect(() => {
     if (fired.current) return;
     fired.current = true;
-
     clear();
-    // Use a stable id so duplicate calls update instead of stacking
     toast.success("Checkout successful! Cart is cleared.", { id: "checkout-success" });
   }, [clear]);
-
   return (
     <main className="mx-auto max-w-3xl px-4 py-16 text-center text-foreground">
       <h1 className="mb-2 text-3xl font-bold">Thanks for the order!</h1>

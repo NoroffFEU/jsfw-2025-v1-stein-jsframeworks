@@ -12,9 +12,7 @@ const ContactSchema = z.object({
     email: z.string().email("Please enter a valid email address"),
     message: z.string().min(10, "Message must be at least 10 characters"),
 });
-
 type ContactForm = z.infer<typeof ContactSchema>;
-
 export default function ContactPage() {
     const {
         register, 
@@ -35,7 +33,6 @@ export default function ContactPage() {
             toast.error("Something went wrong, please try again later.");
         }
     };
-
     return (
         <main className="mx-auto max-w-xl px-4 py-10">
       <h1 className="mb-6 text-2xl font-bold">Contact us</h1>
@@ -52,7 +49,6 @@ export default function ContactPage() {
             <p className="mt-1 text-sm text-rose-600">{errors.fullName.message}</p>
           )}
         </div>
-
         <div>
           <label className="mb-1 block text-sm font-medium">Subject</label>
           <input
@@ -64,7 +60,6 @@ export default function ContactPage() {
             <p className="mt-1 text-sm text-rose-600">{errors.subject.message}</p>
           )}
         </div>
-
         <div>
           <label className="mb-1 block text-sm font-medium">Email</label>
           <input
@@ -77,7 +72,6 @@ export default function ContactPage() {
             <p className="mt-1 text-sm text-rose-600">{errors.email.message}</p>
           )}
         </div>
-
         <div>
           <label className="mb-1 block text-sm font-medium">Message</label>
           <textarea
@@ -89,7 +83,6 @@ export default function ContactPage() {
             <p className="mt-1 text-sm text-rose-600">{errors.message.message}</p>
           )}
         </div>
-
         <div className="pt-2">
           <button
             type="submit"
