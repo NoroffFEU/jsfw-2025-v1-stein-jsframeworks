@@ -1,7 +1,5 @@
 # Online Store (Next.js)
 
-CURRENTLY UNDERGOING UPGRADES!
-
 JS Frameworks 1 CA at Noroff Vocational School built with **Next.js 15 (App Router)**, **React 19**, **Tailwind CSS v4**, **Zustand** for cart state, **React Hook Form** + **Zod** for forms/validation, and **sonner** for toasts. Deployed on **Vercel**.
 
  - Production: [JS2 Frameworks](https://jsfw-2025-v1-stein-jsframeworks.vercel.app/)
@@ -42,6 +40,7 @@ The following updates have been done to project (11.12.2025)
   - Updated color palette.
   - Added Footer to the page. 
 ```
+This update was done during the Portfolio 2 assignment at Noroff (2 week assignment).
 
 ### Tech Stack
 
