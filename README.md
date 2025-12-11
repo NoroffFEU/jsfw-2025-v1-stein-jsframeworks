@@ -17,7 +17,6 @@ JS Frameworks 1 CA at Noroff Vocational School built with **Next.js 15 (App Rout
  * [Configuration](#configuration)
  * [Project Structure](#project-structure)
  * [Deployment (Vercel)](#deployment-(vercel))
- * [Common Warnings & Quick Fixes](#common-warnings-&-quick-fixes)
  * [Troubleshooting](#troubleshooting)
  * [License](#license)
 
